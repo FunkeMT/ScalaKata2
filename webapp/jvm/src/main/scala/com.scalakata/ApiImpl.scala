@@ -12,6 +12,7 @@ class ApiImpl(artifacts: Seq[Path], scalacOptions: Seq[String], security: Boolea
   private val presentationCompiler = new PresentationCompiler(artifacts, scalacOptions)
 
   def autocomplete(request: CompletionRequest) = presentationCompiler.autocomplete(request)
+
   def eval(request: EvalRequest) = {
     val response1 = eval.apply(request)
     val response2 =
@@ -22,7 +23,14 @@ class ApiImpl(artifacts: Seq[Path], scalacOptions: Seq[String], security: Boolea
       } else response1
     response2
   }
+
+  def evalDsl(request: EvalRequest): EvalDslResponse = {
+    eval.evalDsl(request)
+  }
+
   def typeAt(request: TypeAtRequest) = presentationCompiler.typeAt(request)
+
+
 
   def paradiseCrash(response: EvalResponse) = {
     response.complilationInfos.get(Error).flatMap(_.headOption).map(_.message ==

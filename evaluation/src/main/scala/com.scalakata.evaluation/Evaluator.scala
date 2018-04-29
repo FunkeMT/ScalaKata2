@@ -1,19 +1,22 @@
 package com.scalakata
 package evaluation
 
-import scala.tools.nsc.Global
-import scala.tools.nsc.reporters.StoreReporter
-import scala.tools.nsc.io.{VirtualDirectory, AbstractFile}
-import scala.reflect.internal.util.{NoPosition, BatchSourceFile, AbstractFileClassLoader}
-
 import java.io.File
-import java.nio.file.Path
 import java.net.URLClassLoader
-import java.util.concurrent.{TimeoutException, Callable, FutureTask, TimeUnit}
+import java.nio.file.Path
+import java.util.concurrent.{Callable, FutureTask, TimeUnit, TimeoutException}
 
+import de.htwg.scalala.midi.MidiFile
+import de.htwg.scalala.music
+
+import scala.concurrent.duration._
+import scala.reflect.internal.util.{AbstractFileClassLoader, BatchSourceFile, NoPosition}
+import scala.tools.nsc.Global
+import scala.tools.nsc.io.{AbstractFile, VirtualDirectory}
+import scala.tools.nsc.reporters.StoreReporter
 import scala.util.Try
 import scala.util.control.NonFatal
-import scala.concurrent.duration._
+
 
 class Evaluator(artifacts: Seq[Path], scalacOptions: Seq[String], security: Boolean, timeout: Duration) {
 
@@ -23,6 +26,23 @@ class Evaluator(artifacts: Seq[Path], scalacOptions: Seq[String], security: Bool
       try { runTimeout(request.code)
       } catch { case NonFatal(e) ⇒ handleException(e) }
     }
+  }
+
+  def evalDsl(request: EvalRequest): EvalDslResponse = {
+
+    val midiFile = new MidiFile
+    request.code.split(",").map(note => note match {
+      case "c4" => midiFile.addKey(music.c4)
+      case "d4" => midiFile.addKey(music.d4)
+      case "e4" => midiFile.addKey(music.e4)
+      case "f4" => midiFile.addKey(music.f4)
+      case "g4" => midiFile.addKey(music.g4)
+    })
+    midiFile.finalFile
+    val foo: File = midiFile.saveFile
+
+    val res = EvalDslResponse
+    res.apply(foo.getAbsolutePath)
   }
 
   private val secured = new Secured(security)

@@ -1,7 +1,7 @@
 lazy val commonSettings = Seq(
   scalaVersion := "2.11.8",
   organization := "com.scalakata",
-  version := "1.1.5",
+  version := "1.1.5-SNAPSHOT",
   description := "Scala Interactive Playground",
   licenses := Seq("MIT" -> url("http://www.opensource.org/licenses/mit-license.html")),
   homepage := Some(url("http://scalakata.com")),
@@ -34,6 +34,7 @@ lazy val commonSettings = Seq(
     "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
   ),
   libraryDependencies += "org.specs2" %% "specs2-core" % "3.6.4" % "test",
+  libraryDependencies += "de.htwg" % "scalala_2.11" % "0.0.1-SNAPSHOT",
   scmInfo := Some(ScmInfo(
     browseUrl = url("https://github.com/MasseGuillaume/ScalaKata2"),
     connection = "scm:git:git@github.com:MasseGuillaume/ScalaKata2.git"

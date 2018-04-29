@@ -59,6 +59,10 @@ object EvalResponse {
   val empty = EvalResponse(Map.empty, false, None, Nil, "")
 }
 
+case class EvalDslResponse(
+  dslResult: String
+)
+
 // TODO: scalacOptions & dependencies
 case class TypeAtRequest(
   code: String,

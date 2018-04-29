@@ -4,6 +4,7 @@ trait Api{
   def eval(request: EvalRequest): EvalResponse
   def typeAt(request: TypeAtRequest): Option[TypeAtResponse]
   def autocomplete(request: CompletionRequest): List[CompletionResponse]
+  def evalDsl(request: EvalRequest): EvalDslResponse
 }
 
 object Util {

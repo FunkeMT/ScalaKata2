@@ -3,7 +3,8 @@ package evaluation
 
 import java.io.File
 import java.net.URLClassLoader
-import java.nio.file.Path
+import java.nio.file.{Files, Path}
+import java.util.Base64
 import java.util.concurrent.{Callable, FutureTask, TimeUnit, TimeoutException}
 
 import de.htwg.scalala.midi.MidiFile
@@ -41,8 +42,11 @@ class Evaluator(artifacts: Seq[Path], scalacOptions: Seq[String], security: Bool
     midiFile.finalFile
     val foo: File = midiFile.saveFile
 
+    println("base64: " + Base64.getEncoder().encode(Files.readAllBytes(foo.toPath())))
+    println("base64_2: " + Base64.getEncoder.encodeToString(Files.readAllBytes(foo.toPath())))
+
     val res = EvalDslResponse
-    res.apply(foo.getAbsolutePath)
+    res.apply(Base64.getEncoder.encodeToString(Files.readAllBytes(foo.toPath())))
   }
 
   private val secured = new Secured(security)
@@ -184,12 +188,19 @@ class Evaluator(artifacts: Seq[Path], scalacOptions: Seq[String], security: Bool
     classLoader = new AbstractFileClassLoader(target, artifactLoader)
   }
 
+
+
+
   private def compile(code: String): Unit = {
     reset()
     val run = new compiler.Run
     val sourceFiles = List(new BatchSourceFile("(inline)", code))
     run.compileSources(sourceFiles)
   }
+
+
+
+
   private val reporter = new StoreReporter()
   private val settings = toSettings(artifacts, scalacOptions)
   private val artifactLoader = {

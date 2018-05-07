@@ -86,8 +86,8 @@ object Template {
         script(src:="/assets/lib/pagedown/Markdown.Extra.js"),
 
         script(src:="/assets/lib/midi-player-js/browser/midiplayer.js"),
-        script(src:="/assets/lib/midi-player-js/demo/js/soundfont-player.min.js"),
-        script(src:="/assets/lib/midi-player-js/demo/js/app.js"),
+        script(src:="/assets/lib/soundfont-player/dist/soundfont-player.js"),
+        script(src:="/assets/js/scalala-player.js"),
 
         script(src:="/assets/lib/iframe-resizer/js/iframeResizer.min.js"),
 

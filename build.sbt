@@ -108,6 +108,7 @@ lazy val webapp = crossProject.settings(
     "org.webjars"        % "drawer"                 % "3.2.0",
     "org.webjars.npm"    % "iscroll"                % "5.1.3",
     "org.webjars.npm"    % "midi-player-js"         % "2.0.3",
+    "org.webjars.npm"    % "soundfont-player"       % "0.10.6",
     "org.webjars"        % "jquery"                 % "3.0.0",
     "org.webjars.bower"  % "react"                  % "15.1.0"
   )

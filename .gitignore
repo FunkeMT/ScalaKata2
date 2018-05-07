@@ -1,3 +1,10 @@
+###
+# MIDI-Files
+###
+*.mid
+*.midi
+
+
 #### joe made this: http://goel.io/joe
 #### sbt ####
 # Simple Build Tool

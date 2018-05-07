@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/annotation.iml" filepath="$PROJECT_DIR$/.idea/modules/annotation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/annotation-build.iml" filepath="$PROJECT_DIR$/.idea/modules/annotation-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/codemirror.iml" filepath="$PROJECT_DIR$/.idea/modules/codemirror.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/codemirror-build.iml" filepath="$PROJECT_DIR$/.idea/modules/codemirror-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/evaluation.iml" filepath="$PROJECT_DIR$/.idea/modules/evaluation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/evaluation-build.iml" filepath="$PROJECT_DIR$/.idea/modules/evaluation-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/model.iml" filepath="$PROJECT_DIR$/.idea/modules/model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/model-build.iml" filepath="$PROJECT_DIR$/.idea/modules/model-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sbtScalaKata.iml" filepath="$PROJECT_DIR$/.idea/modules/sbtScalaKata.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sbtScalaKata-build.iml" filepath="$PROJECT_DIR$/.idea/modules/sbtScalaKata-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/scalakata2.iml" filepath="$PROJECT_DIR$/.idea/modules/scalakata2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/scalakata2-build.iml" filepath="$PROJECT_DIR$/.idea/modules/scalakata2-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/webapp-sources.iml" filepath="$PROJECT_DIR$/.idea/modules/webapp-sources.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/webappJS.iml" filepath="$PROJECT_DIR$/.idea/modules/webappJS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/webappJS-build.iml" filepath="$PROJECT_DIR$/.idea/modules/webappJS-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/webappJVM.iml" filepath="$PROJECT_DIR$/.idea/modules/webappJVM.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/webappJVM-build.iml" filepath="$PROJECT_DIR$/.idea/modules/webappJVM-build.iml" />
+    </modules>
+  </component>
+</project>

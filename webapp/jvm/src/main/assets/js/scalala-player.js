@@ -1,10 +1,17 @@
+const DOM_MIN_TIMEOUT_VALUE = 4; // 4ms
+
 var MidiPlayer = MidiPlayer;
-var loadFile, loadDataUri, Player;
+var loadFile, loadDataAndPlay, Player;
 var AudioContext = window.AudioContext || window.webkitAudioContext || false;
 var ac = new AudioContext || new webkitAudioContext;
 var eventsDiv = document.getElementById('events');
 
 var instrument1, instrument2;
+
+var repeat = function() {
+    console.log("repeat");
+    Player.stop().play();
+}
 
 
 Soundfont.instrument(ac, 'https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/MusyngKite/acoustic_grand_piano-mp3.js').then(function (instrument_ch1) {
@@ -19,7 +26,7 @@ Soundfont.instrument(ac, 'https://raw.githubusercontent.com/gleitz/midi-js-sound
 
 });
 
-loadDataUri = function(dataUri) {
+loadDataAndPlay = function(dataUri) {
     Player = new MidiPlayer.Player(function(event) {
         if (event.name == 'Note on' && event.velocity > 0 && event.channel == 1) {
             console.debug(event);
@@ -31,6 +38,14 @@ loadDataUri = function(dataUri) {
 
     });
 
+    // Loop Music
+    Player.on('endOfFile', function() {
+        console.log("endOfFile");
+
+        // temporary workaround to loop file (call play() from another context)
+        setTimeout(repeat, DOM_MIN_TIMEOUT_VALUE);
+    });
+
     Player.loadDataUri(dataUri);
     Player.play();
-}
+};

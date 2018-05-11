@@ -27,6 +27,26 @@ object Rendering {
     doc.setCursor(doc.posFromIndex(prelude.length))
   }
 
+  def runDSL(editor: Editor) = {
+    val doc = editor.getDoc()
+    stateButton.setAttribute("data-glyph", "clock")
+    stateButton.setAttribute("title", "evaluating DSL ...")
+
+    Client[Api].evalDsl(EvalRequest(doc.getValue())).call().onSuccess { case response ⇒
+      clear(doc)
+      toclear = true
+
+      println(response)
+      val responseData = response.dslResult
+      val data = s"data:audio/midi;base64,$responseData"
+      println(data)
+
+      // call loadDataAndPlay() function from scalala-player.js
+      // temporary workaround because of no Scala JS Facade
+      js.Dynamic.global.loadDataAndPlay(data)
+    }
+  }
+
   def run(editor: Editor) = {
     val doc = editor.getDoc()
     stateButton.setAttribute("data-glyph", "clock")

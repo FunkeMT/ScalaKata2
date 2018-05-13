@@ -57,6 +57,7 @@ object Main {
     val themeButton = dom.document.getElementById("theme")
     val stateButton = dom.document.getElementById("state")
     val shareButton = dom.document.getElementById("share")
+    val stopButton = dom.document.getElementById("stop")
 
     CodeMirror.commands.run = Rendering.runDSL _
     CodeMirror.commands.typeAt = Hint.typeAt _
@@ -129,6 +130,7 @@ object Main {
             Rendering.run(editor)
           }
         })
+        stopButton.addEventListener("click", (e: dom.Event) => js.Dynamic.global.Player.stop())
 
         val path = dom.window.location.pathname
         if(path != "/") {

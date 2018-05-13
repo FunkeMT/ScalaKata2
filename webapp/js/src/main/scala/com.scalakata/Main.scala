@@ -157,7 +157,7 @@ object Main {
             Rendering.run(editor)
           }
           else {
-            CodeMirror.commands.help(editor)
+            //CodeMirror.commands.help(editor)
             ()
           }
         }

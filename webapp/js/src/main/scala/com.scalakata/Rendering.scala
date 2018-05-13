@@ -54,8 +54,8 @@ object Rendering {
 
     def resetDefault(): Unit = {
       if(doc.getValue().isEmpty) {
-        doc.setValue(wrap(""))
-        resetCursor(doc)
+        //doc.setValue(wrap(""))
+        //resetCursor(doc)
       }
     }
 

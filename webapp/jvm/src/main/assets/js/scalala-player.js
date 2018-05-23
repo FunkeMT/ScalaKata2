@@ -47,5 +47,6 @@ loadDataAndPlay = function(dataUri) {
     });
 
     Player.loadDataUri(dataUri);
+    Player.tempo = 50;
     Player.play();
 };

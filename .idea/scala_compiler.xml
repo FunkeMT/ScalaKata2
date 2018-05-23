@@ -3,7 +3,7 @@
   <component name="ScalaCompilerConfiguration">
     <option name="incrementalityType" value="SBT" />
     <profile name="sbt 1" modules="scalakata2_5821" />
-    <profile name="sbt 2" modules="scalakata2,webappJVM">
+    <profile name="sbt 2" modules="webappJVM,scalakata2">
       <option name="implicitConversions" value="true" />
       <option name="higherKinds" value="true" />
       <option name="existentials" value="true" />

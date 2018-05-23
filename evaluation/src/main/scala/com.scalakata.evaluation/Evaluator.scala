@@ -7,8 +7,7 @@ import java.nio.file.{Files, Path}
 import java.util.Base64
 import java.util.concurrent.{Callable, FutureTask, TimeUnit, TimeoutException}
 
-import de.htwg.scalala.midi.MidiFile
-import de.htwg.scalala.music
+import de.htwg.scalala.simpledsl._
 
 import scala.concurrent.duration._
 import scala.reflect.internal.util.{AbstractFileClassLoader, BatchSourceFile, NoPosition}
@@ -30,23 +29,23 @@ class Evaluator(artifacts: Seq[Path], scalacOptions: Seq[String], security: Bool
   }
 
   def evalDsl(request: EvalRequest): EvalDslResponse = {
+    val parser = new Reader
+    val response = EvalDslResponse
 
-    val midiFile = new MidiFile
-    request.code.split(",").map(note => note match {
-      case "c4" => midiFile.addKey(music.c4)
-      case "d4" => midiFile.addKey(music.d4)
-      case "e4" => midiFile.addKey(music.e4)
-      case "f4" => midiFile.addKey(music.f4)
-      case "g4" => midiFile.addKey(music.g4)
-    })
-    midiFile.finalFile
-    val foo: File = midiFile.saveFile
-
-    println("base64: " + Base64.getEncoder().encode(Files.readAllBytes(foo.toPath())))
-    println("base64_2: " + Base64.getEncoder.encodeToString(Files.readAllBytes(foo.toPath())))
-
-    val res = EvalDslResponse
-    res.apply(Base64.getEncoder.encodeToString(Files.readAllBytes(foo.toPath())))
+    parser.parseAll(parser.song, request.code) match {
+      case parser.Success(r, n) => {
+        val interpreter = new Interpreter(r)
+        try {
+          val resultFile = interpreter.run
+          response.apply(Base64.getEncoder.encodeToString(Files.readAllBytes(resultFile.toPath())))
+        } catch {
+          case e: RuntimeException => response.apply(e.getMessage)
+        }
+      }
+      case parser.Error(msg, n) => response.apply("Error: " + msg)
+      case parser.Failure(msg, n) => response.apply("Error: " + msg)
+      case _ => response.apply("Error: default")
+    }
   }
 
   private val secured = new Secured(security)

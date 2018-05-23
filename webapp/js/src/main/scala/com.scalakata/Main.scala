@@ -127,7 +127,9 @@ object Main {
             Rendering.clear(doc)
             Rendering.toclear = false
           } else {
-            Rendering.run(editor)
+            //Rendering.run(editor)
+            js.Dynamic.global.audioContext.resume()
+            Rendering.runDSL(editor)
           }
         })
         stopButton.addEventListener("click", (e: dom.Event) => js.Dynamic.global.Player.stop())

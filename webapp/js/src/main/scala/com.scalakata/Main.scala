@@ -159,6 +159,11 @@ object Main {
             Rendering.run(editor)
           }
           else {
+            doc.setValue(
+              """SONG:
+                |   PLAY Piano NOTES c,d,e,f,g
+                |   PLAY Marimba NOTES g,f,e,d,c
+              """.stripMargin)
             //CodeMirror.commands.help(editor)
             ()
           }

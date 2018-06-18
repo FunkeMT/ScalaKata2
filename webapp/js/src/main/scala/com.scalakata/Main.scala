@@ -119,7 +119,8 @@ object Main {
         editor.focus()
         Rendering.resetCursor(doc)
         themeButton.addEventListener("click", (e: dom.Event) ⇒ CodeMirror.commands.solarizedToggle(editor))
-        shareButton.addEventListener("click", (e: dom.Event) ⇒ CodeMirror.commands.share(editor))
+        //shareButton.addEventListener("click", (e: dom.Event) ⇒ CodeMirror.commands.share(editor))
+        shareButton.addEventListener("click", (e: dom.Event) ⇒ Scalala.scalala())
         dom.document.getElementById("help").addEventListener("click", (e: dom.Event) ⇒ CodeMirror.commands.help(editor))
         stateButton.setAttribute("title", s"run ($ctrlS + Enter)")
         stateButton.addEventListener("click", (e: dom.Event) ⇒ {

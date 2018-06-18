@@ -122,7 +122,7 @@ def andSourceMap(aFile: java.io.File) = (
 val fullOpt = (fullOptJS in (webappJS, Compile))
 val fastOpt = (fastOptJS in (webappJS, Compile))
 
-lazy val webappJS = webapp.js.dependsOn(codemirror, model)
+lazy val webappJS = webapp.js.dependsOn(codemirror, midiPlayerJs, model)
 lazy val webappJVM = webapp.jvm
   .settings(
     JsEngineKeys.engineType := JsEngineKeys.EngineType.Node,
@@ -146,7 +146,7 @@ lazy val webappJVM = webapp.jvm
         map -> map.getName
       )
     },
-    watchSources ++= ((watchSources in webappJS).value ++ (watchSources in codemirror).value)
+    watchSources ++= ((watchSources in webappJS).value ++ (watchSources in codemirror).value ++ (watchSources in midiPlayerJs).value)
   ).dependsOn(evaluation).enablePlugins(SbtWeb, BuildInfoPlugin)
 
 lazy val codemirror = project
@@ -156,6 +156,15 @@ lazy val codemirror = project
     libraryDependencies ++= Seq(
       "org.scala-js" %%% "scalajs-dom"  % "0.9.1",
       "org.querki"   %%% "querki-jsext" % "0.5"
+    )
+  ).enablePlugins(ScalaJSPlugin)
+
+lazy val midiPlayerJs = project
+  .settings(commonSettings: _*)
+  .settings(
+    scalacOptions -= "-Ywarn-dead-code",
+    libraryDependencies ++= Seq(
+      "org.scala-js" %%% "scalajs-dom"  % "0.9.1"
     )
   ).enablePlugins(ScalaJSPlugin)
 

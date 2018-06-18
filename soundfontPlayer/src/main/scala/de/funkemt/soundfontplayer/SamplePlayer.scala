@@ -6,5 +6,12 @@ import scala.scalajs.js
 
 @js.native
 trait SamplePlayer extends js.Object {
-  def play(name: String, when: Double = 0, options: js.Object = null): AudioNode = js.native
+  val opts: Options = js.native
+
+  def play(name: String, when: Double = 0, options: Options = null): AudioNode = js.native
+}
+
+@js.native
+trait Options extends js.Object {
+  val number: Int = js.native
 }

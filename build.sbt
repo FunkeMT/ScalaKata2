@@ -122,7 +122,7 @@ def andSourceMap(aFile: java.io.File) = (
 val fullOpt = (fullOptJS in (webappJS, Compile))
 val fastOpt = (fastOptJS in (webappJS, Compile))
 
-lazy val webappJS = webapp.js.dependsOn(codemirror, midiPlayerJs, model)
+lazy val webappJS = webapp.js.dependsOn(codemirror, midiPlayerJs, soundfontPlayer, model)
 lazy val webappJVM = webapp.jvm
   .settings(
     JsEngineKeys.engineType := JsEngineKeys.EngineType.Node,
@@ -146,7 +146,7 @@ lazy val webappJVM = webapp.jvm
         map -> map.getName
       )
     },
-    watchSources ++= ((watchSources in webappJS).value ++ (watchSources in codemirror).value ++ (watchSources in midiPlayerJs).value)
+    watchSources ++= ((watchSources in webappJS).value ++ (watchSources in codemirror).value ++ (watchSources in midiPlayerJs).value ++ (watchSources in soundfontPlayer).value)
   ).dependsOn(evaluation).enablePlugins(SbtWeb, BuildInfoPlugin)
 
 lazy val codemirror = project
@@ -160,6 +160,15 @@ lazy val codemirror = project
   ).enablePlugins(ScalaJSPlugin)
 
 lazy val midiPlayerJs = project
+  .settings(commonSettings: _*)
+  .settings(
+    scalacOptions -= "-Ywarn-dead-code",
+    libraryDependencies ++= Seq(
+      "org.scala-js" %%% "scalajs-dom"  % "0.9.1"
+    )
+  ).enablePlugins(ScalaJSPlugin)
+
+lazy val soundfontPlayer = project
   .settings(commonSettings: _*)
   .settings(
     scalacOptions -= "-Ywarn-dead-code",

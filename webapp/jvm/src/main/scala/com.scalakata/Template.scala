@@ -88,7 +88,6 @@ object Template {
 
         script(src:="/assets/lib/midi-player-js/browser/midiplayer.js"),
         script(src:="/assets/lib/soundfont-player/dist/soundfont-player.js"),
-        script(src:="/assets/js/scalala-player.js"),
 
         script(src:="/assets/lib/iframe-resizer/js/iframeResizer.min.js"),
 

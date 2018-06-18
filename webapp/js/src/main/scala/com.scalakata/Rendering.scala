@@ -41,9 +41,8 @@ object Rendering {
       val data = s"data:audio/midi;base64,$responseData"
       println(data)
 
-      // call loadDataAndPlay() function from scalala-player.js
-      // temporary workaround because of no Scala JS Facade
-      js.Dynamic.global.loadDataAndPlay(data)
+      // load and play file
+      Scalala.loadDataAndPlay(data)
     }
   }
 

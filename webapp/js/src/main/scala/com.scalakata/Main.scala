@@ -119,8 +119,7 @@ object Main {
         editor.focus()
         Rendering.resetCursor(doc)
         themeButton.addEventListener("click", (e: dom.Event) ⇒ CodeMirror.commands.solarizedToggle(editor))
-        //shareButton.addEventListener("click", (e: dom.Event) ⇒ CodeMirror.commands.share(editor))
-        shareButton.addEventListener("click", (e: dom.Event) ⇒ Scalala.scalala())
+        shareButton.addEventListener("click", (e: dom.Event) ⇒ CodeMirror.commands.share(editor))
         dom.document.getElementById("help").addEventListener("click", (e: dom.Event) ⇒ CodeMirror.commands.help(editor))
         stateButton.setAttribute("title", s"run ($ctrlS + Enter)")
         stateButton.addEventListener("click", (e: dom.Event) ⇒ {
@@ -129,11 +128,11 @@ object Main {
             Rendering.toclear = false
           } else {
             //Rendering.run(editor)
-            js.Dynamic.global.audioContext.resume()
+            Scalala.audioContext.resume()
             Rendering.runDSL(editor)
           }
         })
-        stopButton.addEventListener("click", (e: dom.Event) => js.Dynamic.global.Player.stop())
+        stopButton.addEventListener("click", (e: dom.Event) => Scalala.stop())
 
         val path = dom.window.location.pathname
         if(path != "/") {
@@ -172,5 +171,7 @@ object Main {
       }
       case _ ⇒ dom.console.error("cannot find text area for the code!")
     }
+
+    Scalala.loadSoundfonts()
   }
 }

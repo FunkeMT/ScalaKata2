@@ -4,6 +4,10 @@
 *.mid
 *.midi
 
+###
+# curstom IDEA
+###
+.idea
 
 #### joe made this: http://goel.io/joe
 #### sbt ####

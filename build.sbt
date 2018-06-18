@@ -94,7 +94,9 @@ lazy val webapp = crossProject.settings(
   name := "Client",
   libraryDependencies ++= Seq(
     "org.scala-js" %%% "scalajs-dom" % "0.9.1",
-    "com.github.japgolly.scalajs-react" %%% "core" % "0.11.1"
+    "com.github.japgolly.scalajs-react" %%% "core" % "0.11.1",
+    "com.github.funkemt" %%% "scala-js-midiplayerjs" % "0.1-SNAPSHOT",
+    "com.github.funkemt" %%% "scala-js-soundfontplayer" % "0.1-SNAPSHOT"
   )
  ).jvmSettings(Revolver.settings:_*)
  .jvmSettings(
@@ -122,7 +124,7 @@ def andSourceMap(aFile: java.io.File) = (
 val fullOpt = (fullOptJS in (webappJS, Compile))
 val fastOpt = (fastOptJS in (webappJS, Compile))
 
-lazy val webappJS = webapp.js.dependsOn(codemirror, midiPlayerJs, soundfontPlayer, model)
+lazy val webappJS = webapp.js.dependsOn(codemirror, model)
 lazy val webappJVM = webapp.jvm
   .settings(
     JsEngineKeys.engineType := JsEngineKeys.EngineType.Node,
@@ -146,7 +148,7 @@ lazy val webappJVM = webapp.jvm
         map -> map.getName
       )
     },
-    watchSources ++= ((watchSources in webappJS).value ++ (watchSources in codemirror).value ++ (watchSources in midiPlayerJs).value ++ (watchSources in soundfontPlayer).value)
+    watchSources ++= ((watchSources in webappJS).value ++ (watchSources in codemirror).value)
   ).dependsOn(evaluation).enablePlugins(SbtWeb, BuildInfoPlugin)
 
 lazy val codemirror = project
@@ -156,24 +158,6 @@ lazy val codemirror = project
     libraryDependencies ++= Seq(
       "org.scala-js" %%% "scalajs-dom"  % "0.9.1",
       "org.querki"   %%% "querki-jsext" % "0.5"
-    )
-  ).enablePlugins(ScalaJSPlugin)
-
-lazy val midiPlayerJs = project
-  .settings(commonSettings: _*)
-  .settings(
-    scalacOptions -= "-Ywarn-dead-code",
-    libraryDependencies ++= Seq(
-      "org.scala-js" %%% "scalajs-dom"  % "0.9.1"
-    )
-  ).enablePlugins(ScalaJSPlugin)
-
-lazy val soundfontPlayer = project
-  .settings(commonSettings: _*)
-  .settings(
-    scalacOptions -= "-Ywarn-dead-code",
-    libraryDependencies ++= Seq(
-      "org.scala-js" %%% "scalajs-dom"  % "0.9.1"
     )
   ).enablePlugins(ScalaJSPlugin)
 

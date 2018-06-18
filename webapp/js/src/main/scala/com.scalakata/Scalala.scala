@@ -1,7 +1,7 @@
 package com.scalakata
 
-import de.funkemt.midiplayerjs.{MidiEvent, Player}
-import de.funkemt.soundfontplayer.{SamplePlayer, Soundfont}
+import midiPlayerJs.{MidiEvent, Player}
+import soundfontPlayer.{SamplePlayer, Soundfont}
 import org.scalajs.dom
 import org.scalajs.dom.raw.AudioContext
 

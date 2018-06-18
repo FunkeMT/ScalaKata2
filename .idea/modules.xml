@@ -16,6 +16,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/sbtScalaKata-build.iml" filepath="$PROJECT_DIR$/.idea/modules/sbtScalaKata-build.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/scalakata2.iml" filepath="$PROJECT_DIR$/.idea/modules/scalakata2.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/scalakata2-build.iml" filepath="$PROJECT_DIR$/.idea/modules/scalakata2-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/soundfontPlayer.iml" filepath="$PROJECT_DIR$/.idea/modules/soundfontPlayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/soundfontPlayer-build.iml" filepath="$PROJECT_DIR$/.idea/modules/soundfontPlayer-build.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/webapp-sources.iml" filepath="$PROJECT_DIR$/.idea/modules/webapp-sources.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/webappJS.iml" filepath="$PROJECT_DIR$/.idea/modules/webappJS.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/webappJS-build.iml" filepath="$PROJECT_DIR$/.idea/modules/webappJS-build.iml" />

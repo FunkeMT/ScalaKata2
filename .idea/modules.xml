@@ -8,6 +8,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/codemirror-build.iml" filepath="$PROJECT_DIR$/.idea/modules/codemirror-build.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/evaluation.iml" filepath="$PROJECT_DIR$/.idea/modules/evaluation.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/evaluation-build.iml" filepath="$PROJECT_DIR$/.idea/modules/evaluation-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/midiPlayerJs.iml" filepath="$PROJECT_DIR$/.idea/modules/midiPlayerJs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/midiPlayerJs-build.iml" filepath="$PROJECT_DIR$/.idea/modules/midiPlayerJs-build.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/model.iml" filepath="$PROJECT_DIR$/.idea/modules/model.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/model-build.iml" filepath="$PROJECT_DIR$/.idea/modules/model-build.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/sbtScalaKata.iml" filepath="$PROJECT_DIR$/.idea/modules/sbtScalaKata.iml" />

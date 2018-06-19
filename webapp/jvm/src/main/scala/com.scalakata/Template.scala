@@ -55,10 +55,10 @@ object Template {
           ul(`class` := "menu")(
             li(id := "state", `class` := "oi", "data-glyph".attr := "media-play"),
             li(id := "stop", `class` := "oi", "data-glyph".attr := "media-stop"),
-            li(id := "theme", "title".attr := "toggle theme (F2)", `class` := "oi", "data-glyph".attr := "sun"),
-            li(id := "help", "title".attr := "help (F1)", `class` := "oi", "data-glyph".attr := "question-mark"),
-            li(id := "share", "title".attr := "share (F7)", `class` := "oi", "data-glyph".attr := "share-boxed"),
-            li(id := "rooms", "title".attr := "rooms list", `class` := "oi drawer-toggle", "data-glyph".attr := "list")
+            li(id := "theme", "title".attr := "toggle theme (F2)", `class` := "oi not-used", "data-glyph".attr := "sun"),
+            li(id := "help", "title".attr := "help (F1)", `class` := "oi not-used", "data-glyph".attr := "question-mark"),
+            li(id := "share", "title".attr := "share (F7)", `class` := "oi not-used", "data-glyph".attr := "share-boxed"),
+            li(id := "rooms", "title".attr := "rooms list", `class` := "oi drawer-toggle not-used", "data-glyph".attr := "list")
           ),
           div(id := "shared"),
           nav(id := "react-room-list", cls := "drawer-nav", role := "navigation")

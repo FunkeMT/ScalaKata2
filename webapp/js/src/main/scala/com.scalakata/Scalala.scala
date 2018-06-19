@@ -3,7 +3,7 @@ package com.scalakata
 import midiPlayerJs.{MidiEvent, Player}
 import soundfontPlayer.{SamplePlayer, Soundfont}
 import org.scalajs.dom
-import org.scalajs.dom.raw.AudioContext
+import org.scalajs.dom.raw.{AudioContext, HTMLElement}
 
 import scala.collection.mutable.ListBuffer
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -51,6 +51,12 @@ object Scalala {
 
 
   /**
+    * DOM-Elements
+    */
+  val progressBar: org.scalajs.dom.raw.Element = dom.document.getElementById("play-bar-progress")
+
+
+  /**
     * MidiPlayerJS Event
     * ''midiEvent''
     *
@@ -62,11 +68,12 @@ object Scalala {
       var instrumentID = channelsMap.get(event.channel).get
       var instrument = instrumentsMap.get(instrumentID).get
       instrument.play(event.noteName, audioContext.currentTime)
+      progressBar.asInstanceOf[HTMLElement].style.width = (s"${100 - player.getSongPercentRemaining()}%")
     } else if (event.name.isDefined && event.name.equals("Program Change") && event.value.isDefined) {
       // ToDo: Workaround
       channelsMap += (event.channel -> event.value.get)
     }
-    dom.console.log(event)
+    //dom.console.log(event)
   })
 
   /**

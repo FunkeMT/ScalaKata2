@@ -51,6 +51,9 @@ object Template {
       body(`class` := "cm-s-solarized cm-s-dark")(
         div(`id` := "code", cls := "drawer drawer--right")(
           noscript("No Javscript, No Scala!"),
+          div(cls := "play-bar")(
+            div(id := "play-bar-progress", cls := "play-bar-progress")
+          ),
           textarea(id := "scalakata", style := "display: none;"),
           ul(`class` := "menu")(
             li(id := "state", `class` := "oi", "data-glyph".attr := "media-play"),

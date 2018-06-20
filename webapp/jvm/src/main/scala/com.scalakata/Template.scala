@@ -57,7 +57,7 @@ object Template {
           textarea(id := "scalakata", style := "display: none;"),
           ul(`class` := "menu")(
             li(id := "state", `class` := "oi", "data-glyph".attr := "media-play"),
-            li(id := "stop", `class` := "oi", "data-glyph".attr := "media-stop"),
+            li(id := "stop", "title".attr := "Stop", `class` := "oi", "data-glyph".attr := "media-stop"),
             li(id := "theme", "title".attr := "toggle theme (F2)", `class` := "oi not-used", "data-glyph".attr := "sun"),
             li(id := "help", "title".attr := "help (F1)", `class` := "oi not-used", "data-glyph".attr := "question-mark"),
             li(id := "share", "title".attr := "share (F7)", `class` := "oi not-used", "data-glyph".attr := "share-boxed"),

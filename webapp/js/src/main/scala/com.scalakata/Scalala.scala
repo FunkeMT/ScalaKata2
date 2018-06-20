@@ -53,7 +53,8 @@ object Scalala {
   /**
     * DOM-Elements
     */
-  val progressBar: org.scalajs.dom.raw.Element = dom.document.getElementById("play-bar-progress")
+  val progressBar = dom.document.getElementById("play-bar-progress")
+  val stateButton = dom.document.getElementById("state")
 
 
   /**
@@ -98,6 +99,10 @@ object Scalala {
     * IMPORTANT: Has to be finished before continuing
     */
   def loadSoundfonts() = {
+    stateButton.setAttribute("data-glyph", "clock")
+    stateButton.classList.add("disabled")
+    println("Loading Soundfonts ...")
+
     for ((key, value) <- soundfontMap) {
       futureList += Soundfont.instrument(
         audioContext,
@@ -112,9 +117,16 @@ object Scalala {
         for (obj <- x) {
           instrumentsMap += (obj.opts.number -> obj)
         }
-        println("Load Soundfonts complete.")
+        println("Loading Soundfonts: Completed.")
+        stateButton.setAttribute("data-glyph", "media-play")
+        stateButton.classList.remove("disabled")
       }
-      case Failure(ex) => println("Failed !!! " + ex)
+      case Failure(ex) => {
+        val errMsg = "Error while Loading Soundfonts! " + ex
+        println(errMsg)
+        stateButton.setAttribute("data-glyph", "warning")
+        stateButton.setAttribute("title", errMsg)
+      }
     }
   }
 

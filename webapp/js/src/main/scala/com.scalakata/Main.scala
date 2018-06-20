@@ -127,8 +127,11 @@ object Main {
             Rendering.clear(doc)
             Rendering.toclear = false
           } else {
-            //Rendering.run(editor)
+            // Resume AudioContext
+            // see: https://goo.gl/7K7WLu
             Scalala.audioContext.resume()
+
+            // Call ScalalaDSL Evaluation
             Rendering.runDSL(editor)
           }
         })

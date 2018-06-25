@@ -13,7 +13,7 @@ object Server {
   def start(timeout: FiniteDuration, security: Boolean, artifacts: Seq[Path], 
             scalacOptions: Seq[String], host: String, port: Int, readyPort: Option[Int], prod: Boolean): Unit = {
 
-    println((timeout, security, artifacts, scalacOptions, host, port, readyPort, prod))
+    //println((timeout, security, artifacts, scalacOptions, host, port, readyPort, prod))
 
     val config: Config = ConfigFactory.parseString(s"""
       akka.http.server {

@@ -108,7 +108,7 @@ object Template {
               start: [
                 // Rules are matched in the order in which they appear, so there is
                 // no ambiguity between this one and the one above
-                {regex: /(?:MUSICIAN|INSTRUMENT|PLAYS|LOOP|CHORD|WITH|TEMPO|AT|PLAY)\b/,
+                {regex: /(?:musician|instrument|plays|loop|chord|with|tempo|at|play)\b/,
                 token: 'keyword'},
 
                 {regex: /[A-Z$][a-z$]+/, token: 'variable-3'},

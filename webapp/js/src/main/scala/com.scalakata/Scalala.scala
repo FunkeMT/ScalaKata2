@@ -13,7 +13,7 @@ import scala.util.Failure
 
 object Scalala {
   val DOM_MIN_TIMEOUT_VALUE: Double = 4 // 4ms
-  val SOUNDFONT_REPO_URI_PREFIX = "https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/FluidR3_GM/"
+  val SOUNDFONT_REPO_URI_PREFIX = "https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/MusyngKite/"
   val SOUNDFONT_REPO_URI_SUFFIX = "-mp3.js"
 
   val audioContext = new AudioContext

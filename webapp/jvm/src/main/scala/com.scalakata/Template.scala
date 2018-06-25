@@ -82,6 +82,7 @@ object Template {
         script(src:="/assets/lib/codemirror/addon/search/match-highlighter.js"),
         script(src:="/assets/lib/codemirror/addon/search/search.js"),
         script(src:="/assets/lib/codemirror/addon/search/searchcursor.js"),
+        script(src:="/assets/lib/codemirror/addon/mode/simple.js"),
         script(src:="/assets/lib/codemirror/keymap/sublime.js"),
         script(src:="/assets/lib/codemirror/mode/clike/clike.js"),
 
@@ -101,20 +102,42 @@ object Template {
         script(src:="/assets/lib/react/react-with-addons.min.js"),
         script(src:="/assets/lib/react/react-dom.min.js"),
 
+        script("""
+              CodeMirror.defineSimpleMode('simplemode', {
+              // The start state contains the rules that are intially used
+              start: [
+                // Rules are matched in the order in which they appear, so there is
+                // no ambiguity between this one and the one above
+                {regex: /(?:MUSICIAN|INSTRUMENT|PLAYS|LOOP|CHORD|WITH|TEMPO|AT|PLAY)\b/,
+                token: 'keyword'},
+
+                {regex: /[A-Z$][a-z$]+/, token: 'variable-3'},
+
+                {regex: /0x[a-f\d]+|[-+]?(?:\.\d+|\d+\.?\d*)(?:e[-+]?\d+)?/i,
+                token: 'number'},
+
+
+                // indent and dedent properties guide autoindentation
+                {regex: /[\{\[\(]/, indent: true},
+                {regex: /[\}\]\)]/, dedent: true},
+
+                {regex: /([a-z$])(,)([a-z$])/, token: ['variable-2', null, 'variable-2']},
+
+                {regex: /[a-z$][\w$]*/, token: 'variable-1'},
+
+
+
+                // You can embed other modes with the mode property. This rule
+                // causes all code between << and >> to be highlighted with the XML
+                // mode.
+                {regex: /<</, token: 'meta', mode: {spec: 'xml', end: />>/}}
+              ]
+            });
+        """),
+
         script(src:=s"/assets/$client"),
         raw("""<script>var codeReg = /<code>([\s\S]*?)<\/code>/;</script>"""),
         script("com.scalakata.Main().main()"),
-        script("""
-          if(window.location.hostname !== 'localhost') {
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-            ga('create', 'UA-42764457-1', 'auto');
-            ga('send', 'pageview');
-          }
-        """),
 
         script("""
           $(document).ready(function() {

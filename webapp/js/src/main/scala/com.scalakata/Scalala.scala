@@ -13,7 +13,7 @@ import scala.util.Failure
 
 object Scalala {
   val DOM_MIN_TIMEOUT_VALUE: Double = 4 // 4ms
-  val SOUNDFONT_REPO_URI_PREFIX = "https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/MusyngKite/"
+  val SOUNDFONT_REPO_URI_PREFIX = "https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/FluidR3_GM/"
   val SOUNDFONT_REPO_URI_SUFFIX = "-mp3.js"
 
   val audioContext = new AudioContext
@@ -37,6 +37,7 @@ object Scalala {
   soundfontMap += (13 -> "marimba")
   soundfontMap += (25 -> "acoustic_guitar_nylon")
   soundfontMap += (57 -> "trumpet")
+  soundfontMap += (115 -> "steel_drums")
 //  soundfontMap += (14 -> "xylophone")
 //  soundfontMap += (20 -> "church_organ")
 //  soundfontMap += (33 -> "acoustic_bass")
@@ -73,6 +74,8 @@ object Scalala {
     } else if (event.name.isDefined && event.name.equals("Program Change") && event.value.isDefined) {
       // ToDo: Workaround
       channelsMap += (event.channel -> event.value.get)
+    } else if (event.name.isDefined && event.name.equals("Set Tempo") && event.data.isDefined) {
+      player.setTempo(event.data.get)
     }
     //dom.console.log(event)
   })

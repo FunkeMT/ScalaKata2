@@ -7,7 +7,7 @@ import java.nio.file.{Files, Path}
 import java.util.Base64
 import java.util.concurrent.{Callable, FutureTask, TimeUnit, TimeoutException}
 
-import de.htwg.scalala.simpledsl._
+import de.htwg.scalala.advancedDsl._
 
 import scala.concurrent.duration._
 import scala.reflect.internal.util.{AbstractFileClassLoader, BatchSourceFile, NoPosition}

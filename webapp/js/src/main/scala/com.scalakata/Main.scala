@@ -23,7 +23,7 @@ object Main {
     val ctrlS = if(isMac) "⌘" else "Ctrl"
 
     val params = EditorConfig.
-      mode(Rendering.modeScala).
+      mode("simplemode").
       autofocus(true).
       lineNumbers(false).
       lineWrapping(false).
@@ -163,9 +163,29 @@ object Main {
           }
           else {
             doc.setValue(
-              """SONG:
-                |   PLAY Piano NOTES c,d,e,f,g
-                |   PLAY Marimba NOTES g,f,e,d,c
+              """MUSICIAN piano_1
+                |  INSTRUMENT Piano
+                |  PLAYS d,e,f,g,d,e,f,g,d,e,f,g,a,b,d,e,f,c
+                |
+                |MUSICIAN marimba_1
+                |  INSTRUMENT Marimba
+                |  PLAYS CHORD(c,d)
+                |
+                |MUSICIAN guitar_1
+                |  INSTRUMENT Guitar
+                |  PLAYS LOOP(a,b)
+                |
+                |MUSICIAN drummer_1
+                |  INSTRUMENT Drum
+                |  PLAYS LOOP(HiHatClosed)
+                |
+                |PLAY
+                |   piano_1,
+                |   marimba_1 AT 12,
+                |   marimba_1 AT 7,
+                |   guitar_1,
+                |   drummer_1
+                |WITH TEMPO 20
               """.stripMargin)
             //CodeMirror.commands.help(editor)
             ()

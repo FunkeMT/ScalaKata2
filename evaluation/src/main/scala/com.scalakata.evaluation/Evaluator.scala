@@ -37,14 +37,14 @@ class Evaluator(artifacts: Seq[Path], scalacOptions: Seq[String], security: Bool
         val interpreter = new Interpreter(r)
         try {
           val resultFile = interpreter.run
-          response.apply(Base64.getEncoder.encodeToString(Files.readAllBytes(resultFile.toPath())))
+          response.apply(Base64.getEncoder.encodeToString(Files.readAllBytes(resultFile.toPath())), None)
         } catch {
-          case e: RuntimeException => response.apply(e.getMessage)
+          case e: RuntimeException => response.apply("", Some(RuntimeError("RuntimeException: " + e.getMessage, None)))
         }
       }
-      case parser.Error(msg, n) => response.apply("Error: " + msg)
-      case parser.Failure(msg, n) => response.apply("Error: " + msg)
-      case _ => response.apply("Error: default")
+      case parser.Error(msg, n) => response.apply("", Some(RuntimeError("ParserError: " + msg, None)))
+      case parser.Failure(msg, n) => response.apply("", Some(RuntimeError("ParserFailure: " + msg, None)))
+      case _ => response.apply("", Some(RuntimeError("Error: default", None)))
     }
   }
 

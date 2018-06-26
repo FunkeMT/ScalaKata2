@@ -27,19 +27,35 @@ object Rendering {
     doc.setCursor(doc.posFromIndex(prelude.length))
   }
 
-  def runDSL(editor: Editor) = {
+  def runDSL(editor: Editor): Unit = {
+    def noop[T](v: T): Unit = ()
+
+    def nextline2(endPos: Position, node: HTMLElement, process: (HTMLElement ⇒ Unit) = noop, options: js.Any = null): Anoted = {
+      process(node)
+      Line(editor.addLineWidget(endPos.line, node, options))
+    }
+
     val doc = editor.getDoc()
     stateButton.setAttribute("data-glyph", "clock")
     stateButton.setAttribute("title", "evaluating DSL ...")
 
     Client[Api].evalDsl(EvalRequest(doc.getValue())).call().onSuccess { case response ⇒
+      println(response)
       clear(doc)
       toclear = true
 
-      println(response)
+      if (response.runtimeError.nonEmpty) {
+        val node = div(`class` := "runtime-error")(
+          i(`class`:="oi", "data-glyph".attr := "circle-x"),
+          span(response.runtimeError.get.message)
+        ).render
+        annotations = List[Anoted](nextline2(Pos.ch(0).line(0), node))
+        Scalala.stop
+        return
+      }
+
       val responseData = response.dslResult
       val data = s"data:audio/midi;base64,$responseData"
-      println(data)
 
       // load and play file
       Scalala.loadDataAndPlay(data)

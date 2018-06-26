@@ -60,7 +60,8 @@ object EvalResponse {
 }
 
 case class EvalDslResponse(
-  dslResult: String
+  dslResult: String,
+  runtimeError: Option[RuntimeError]
 )
 
 // TODO: scalacOptions & dependencies

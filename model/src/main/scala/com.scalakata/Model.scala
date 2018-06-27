@@ -74,6 +74,15 @@ case class TypeAtResponse(
   val tpe: String
 )
 
+case class DslCompletionRequest(
+  code: String,
+  position: RangePosition
+)
+
+case class DslCompletionResponse(
+   val name: String
+ )
+
 // TODO: scalacOptions & dependencies
 case class CompletionRequest(
   code: String,

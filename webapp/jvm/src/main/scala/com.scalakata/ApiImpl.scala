@@ -5,6 +5,8 @@ import evaluation._
 import java.nio.file.Path
 import scala.concurrent.duration._
 
+import de.htwg.scalala.advancedDsl._
+
 class ApiImpl(artifacts: Seq[Path], scalacOptions: Seq[String], security: Boolean, timeout: FiniteDuration) extends Api {
 
   def create() = new Evaluator(artifacts, scalacOptions, security, timeout)
@@ -26,6 +28,12 @@ class ApiImpl(artifacts: Seq[Path], scalacOptions: Seq[String], security: Boolea
 
   def evalDsl(request: EvalRequest): EvalDslResponse = {
     eval.evalDsl(request)
+  }
+
+  def autocompleteDsl(request: DslCompletionRequest): List[DslCompletionResponse] = {
+    val codePart = request.code.substring(0, request.position.point)
+    val parser = new ReaderAutoComplete
+    parser.autoCompletion(parser.song, codePart).map(new DslCompletionResponse(_))
   }
 
   def typeAt(request: TypeAtRequest) = presentationCompiler.typeAt(request)

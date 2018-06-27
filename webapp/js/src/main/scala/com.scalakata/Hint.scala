@@ -102,6 +102,27 @@ object Hint {
                         }): Hint
             }.to[js.Array]
       },
+      single = false
+    )
+  }
+  def autocompleteDsl(editor: Editor) = {
+    val code = editor.getDoc().getValue()
+    hint(editor,
+      pos ⇒ Client[Api].autocompleteDsl(DslCompletionRequest(code, RangePosition(pos, pos, pos))).call(),
+      (data: List[DslCompletionResponse], term) ⇒ {
+        data
+          .map{ case DslCompletionResponse(name) ⇒
+            HintConfig.className("autocomplete")
+              .text(name)
+              .render((el, _, _) ⇒ {
+                val node = pre(`class` := "signature").render
+                CodeMirror.runMode(name, "simplemode", node)
+                el.appendChild(span(`class` := "name cm-def")(name).render)
+                el.appendChild(node)
+                ()
+              }): Hint
+          }.to[js.Array]
+      },
       single = true
     )
   }

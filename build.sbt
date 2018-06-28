@@ -31,10 +31,11 @@ lazy val commonSettings = Seq(
   scalacOptions in (Compile, console) -= "-Ywarn-unused-import",
   resolvers ++= Seq(
     "masseguillaume" at "http://dl.bintray.com/content/masseguillaume/maven",
-    "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
+    "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases",
+    "funkemt" at "http://dl.bintray.com/content/funkemt/maven"
   ),
   libraryDependencies += "org.specs2" %% "specs2-core" % "3.6.4" % "test",
-  libraryDependencies += "de.htwg" % "scalala_2.11" % "0.0.1-SNAPSHOT",
+  libraryDependencies += "com.github.funkemt" % "scalala_2.11" % "0.1",
   scmInfo := Some(ScmInfo(
     browseUrl = url("https://github.com/MasseGuillaume/ScalaKata2"),
     connection = "scm:git:git@github.com:MasseGuillaume/ScalaKata2.git"
@@ -92,11 +93,12 @@ lazy val webapp = crossProject.settings(
 ).settings(commonSettings: _*)
  .jsSettings(
   name := "Client",
+  resolvers += "funkemt" at "http://dl.bintray.com/content/funkemt/maven",
   libraryDependencies ++= Seq(
     "org.scala-js" %%% "scalajs-dom" % "0.9.1",
     "com.github.japgolly.scalajs-react" %%% "core" % "0.11.1",
-    "com.github.funkemt" %%% "scala-js-midiplayerjs" % "0.1-SNAPSHOT",
-    "com.github.funkemt" %%% "scala-js-soundfontplayer" % "0.1-SNAPSHOT"
+    "com.github.funkemt" %%% "scala-js-midiplayerjs" % "0.1",
+    "com.github.funkemt" %%% "scala-js-soundfontplayer" % "0.1"
   )
  ).jvmSettings(Revolver.settings:_*)
  .jvmSettings(

@@ -3,11 +3,12 @@ package com.scalakata
 import midiPlayerJs.{MidiEvent, Player}
 import soundfontPlayer.{SamplePlayer, Soundfont}
 import org.scalajs.dom
-import org.scalajs.dom.raw.{AudioContext, HTMLElement}
+import org.scalajs.dom.raw.{HTMLElement}
 
 import scala.collection.mutable.ListBuffer
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
+import scala.scalajs.js
 import scala.util.Success
 import scala.util.Failure
 
@@ -16,7 +17,8 @@ object Scalala {
   val SOUNDFONT_REPO_URI_PREFIX = "https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/MusyngKite/"
   val SOUNDFONT_REPO_URI_SUFFIX = "-mp3.js"
 
-  val audioContext = new AudioContext
+  val audioContextInit = js.Dynamic.global.AudioContext || js.Dynamic.global.webkitAudioContext
+  val audioContext = js.Dynamic.newInstance(audioContextInit)()
   val player = new Player()
 
   var instrumentsMap = Map[Int, SamplePlayer]()
@@ -69,7 +71,7 @@ object Scalala {
     if (event.name.isDefined && event.name.equals("Note on") && event.velocity > 0) {
       var instrumentID = channelsMap.get(event.channel).get
       var instrument = instrumentsMap.get(instrumentID).get
-      instrument.play(event.noteName, audioContext.currentTime)
+      instrument.play(event.noteName, audioContext.currentTime.asInstanceOf[Double])
       progressBar.asInstanceOf[HTMLElement].style.width = (s"${100 - player.getSongPercentRemaining()}%")
     } else if (event.name.isDefined && event.name.equals("Program Change") && event.value.isDefined) {
       // ToDo: Workaround

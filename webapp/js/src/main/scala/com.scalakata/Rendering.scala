@@ -44,12 +44,14 @@ object Rendering {
       clear(doc)
       toclear = true
 
-      if (response.runtimeError.nonEmpty) {
+      response.runtimeError.map{ case RuntimeError(message, pos) ⇒
+        println(pos)
+        println("PosCalc: " + Pos.ch(0).line(pos.map(_ - 1).getOrElse(0)))
         val node = div(`class` := "runtime-error")(
           i(`class`:="oi", "data-glyph".attr := "circle-x"),
-          span(response.runtimeError.get.message)
+          span(message)
         ).render
-        annotations = List[Anoted](nextline2(Pos.ch(0).line(0), node))
+        annotations = List[Anoted](nextline2(Pos.ch(0).line(pos.map(_ - 1).getOrElse(0)), node))
         Scalala.stop
         return
       }

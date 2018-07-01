@@ -35,7 +35,7 @@ lazy val commonSettings = Seq(
     "funkemt" at "http://dl.bintray.com/content/funkemt/maven"
   ),
   libraryDependencies += "org.specs2" %% "specs2-core" % "3.6.4" % "test",
-  libraryDependencies += "com.github.funkemt" % "scalala_2.11" % "0.2",
+  libraryDependencies += "com.github.funkemt" % "scalala_2.11" % "0.2.2",
   scmInfo := Some(ScmInfo(
     browseUrl = url("https://github.com/MasseGuillaume/ScalaKata2"),
     connection = "scm:git:git@github.com:MasseGuillaume/ScalaKata2.git"

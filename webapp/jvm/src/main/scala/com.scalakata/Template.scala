@@ -106,31 +106,22 @@ object Template {
               CodeMirror.defineSimpleMode('simplemode', {
               // The start state contains the rules that are intially used
               start: [
-                // Rules are matched in the order in which they appear, so there is
-                // no ambiguity between this one and the one above
-                {regex: /(?:musician|instrument|plays|loop|chord|with|tempo|at|play)\b/,
+                // keywords
+                {regex: /musician|instrument|plays|loop|chord|with|tempo|at|play/,
                 token: 'keyword'},
 
-                {regex: /[A-Z$][a-z$]+/, token: 'variable-3'},
+                // instrument
+                {regex: /[A-Z$][a-z$]+/, token: 'variable-1'},
 
+                // number
                 {regex: /0x[a-f\d]+|[-+]?(?:\.\d+|\d+\.?\d*)(?:e[-+]?\d+)?/i,
                 token: 'number'},
 
+                // note
+                {regex: /([+-]{0,2})([a-h])((?:.(?:sharp|flat|dot))?(?:\s?\/\s?\d)?,?)/g, token: [null, 'variable-2', null]},
 
-                // indent and dedent properties guide autoindentation
-                {regex: /[\{\[\(]/, indent: true},
-                {regex: /[\}\]\)]/, dedent: true},
-
-                {regex: /([a-z$])(,)([a-z$])/, token: ['variable-2', null, 'variable-2']},
-
-                {regex: /[a-z$][\w$]*/, token: 'variable-1'},
-
-
-
-                // You can embed other modes with the mode property. This rule
-                // causes all code between << and >> to be highlighted with the XML
-                // mode.
-                {regex: /<</, token: 'meta', mode: {spec: 'xml', end: />>/}}
+                // musician name variable
+                {regex: /[a-z][\w$]+/, token: 'variable-2'},
               ]
             });
         """),

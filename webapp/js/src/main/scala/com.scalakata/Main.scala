@@ -60,9 +60,9 @@ object Main {
     val stopButton = dom.document.getElementById("stop")
 
     CodeMirror.commands.run = Rendering.runDSL _
-    CodeMirror.commands.typeAt = Hint.typeAt _
+    //CodeMirror.commands.typeAt = Hint.typeAt _
     CodeMirror.commands.autocomplete = Hint.autocompleteDsl _
-    CodeMirror.commands.autocompleteDot = Hint.autocompleteDot _
+    //CodeMirror.commands.autocompleteDot = Hint.autocompleteDot _
     CodeMirror.commands.help = (editor: Editor) ⇒ {
       editor.getDoc().setValue(Util.wrap("help"))
       Rendering.run(editor)

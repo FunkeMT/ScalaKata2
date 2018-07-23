@@ -165,26 +165,27 @@ object Main {
             doc.setValue(
               """musician piano_1
                 |  instrument Piano
-                |  plays d,e,f,g,d,e,f,g,d,e,f,g,a,b,d,e,f,c
+                |  plays -a,e,d,d/2,c/2,d,d/2,e/2,d/4,c/4,-a/4,-g/4
                 |
-                |musician marimba_1
-                |  instrument Marimba
-                |  plays chord(c,d,e)
+                |musician piano_2
+                |  instrument Piano
+                |  plays chord(--a,--c.sharp,-e)
                 |
-                |musician guitar_1
-                |  instrument Guitar
-                |  plays loop(a,b)
+                |musician piano_3
+                |  instrument Piano
+                |  plays --f
                 |
-                |musician drummer_1
-                |  instrument Drum
-                |  plays loop(HiHatClosed)
+                |musician piano_4
+                |  instrument Piano
+                |  plays -a,c,+a.dot
                 |
-                |play with tempo 50
-                |  piano_1,
-                |  marimba_1 at 12,
-                |  marimba_1 at 7,
-                |  guitar_1,
-                |  drummer_1
+                |
+                |play with tempo 70
+                |  piano_1 at 1,
+                |  piano_1 at 105,
+                |  piano_2 at 1,
+                |  piano_3 at 105,
+                |  piano_4 at 224
               """.stripMargin)
             //CodeMirror.commands.help(editor)
             ()

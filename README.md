@@ -2,6 +2,8 @@
 
 # ScalalaKata
 
+[![Gitter](https://badges.gitter.im/ScalalaKata/Lobby.svg)](https://gitter.im/ScalalaKata/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![ScalalaKata](https://i.imgur.com/dr50sGF.png)](https://vimeo.com/282212340 "Scalala Demo - Click to Watch!")
 
 ### Online Demo

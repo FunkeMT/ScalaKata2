@@ -18,8 +18,8 @@
 ### Developed Dependencies
 
 - [Scalala](https://github.com/FunkeMT/scalala) [![Build Status](https://travis-ci.org/FunkeMT/scalala.svg?branch=master)](https://travis-ci.org/FunkeMT/scalala)
-- [scala-js-MidiPlayerJS](https://github.com/FunkeMT/scala-js-MidiPlayerJS)
-- [scala-js-soundfontPlayer](https://github.com/FunkeMT/scala-js-soundfontPlayer)
+- [scala-js-MidiPlayerJS](https://github.com/FunkeMT/scala-js-MidiPlayerJS) [![Build Status](https://travis-ci.org/FunkeMT/scala-js-MidiPlayerJS.svg?branch=master)](https://travis-ci.org/FunkeMT/scala-js-MidiPlayerJS)
+- [scala-js-soundfontPlayer](https://github.com/FunkeMT/scala-js-soundfontPlayer) [![Build Status](https://travis-ci.org/FunkeMT/scala-js-soundfontPlayer.svg?branch=master)](https://travis-ci.org/FunkeMT/scala-js-soundfontPlayer)
 
 ### Based On
 

@@ -17,7 +17,7 @@
 
 ### Developed Dependencies
 
-- [Scalala](https://github.com/FunkeMT/scalala)
+- [Scalala](https://github.com/FunkeMT/scalala) [![Build Status](https://travis-ci.org/FunkeMT/scalala.svg?branch=master)](https://travis-ci.org/FunkeMT/scalala)
 - [scala-js-MidiPlayerJS](https://github.com/FunkeMT/scala-js-MidiPlayerJS)
 - [scala-js-soundfontPlayer](https://github.com/FunkeMT/scala-js-soundfontPlayer)
 

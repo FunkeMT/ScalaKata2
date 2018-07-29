@@ -57,7 +57,8 @@ object Template {
             ul()(
               li()(link(href := "#")("Foo")),
               li()(link(href := "#")("Bar")),
-              li()(link(href := "#")("Baz"))
+              hr(),
+              li()(a(href := "https://github.com/FunkeMT/ScalalaKata", target := "tab")("GitHub"))
             )
           )
         ),

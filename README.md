@@ -11,7 +11,7 @@
 [http://scalala.syslab.in.htwg-konstanz.de:7331/](http://scalala.syslab.in.htwg-konstanz.de:7331/)
 (_available solely via the HTWG VPN gateway_)
 
-### Bachelor Thesis
+### Bachelor Thesis (LaTeX)
 
 [https://github.com/FunkeMT/bachelor-thesis-scalala](https://github.com/FunkeMT/bachelor-thesis-scalala)
 

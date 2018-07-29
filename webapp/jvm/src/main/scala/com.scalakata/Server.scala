@@ -1,41 +1,44 @@
 package com.scalakata
 
-import upickle._
-import spray.routing.SimpleRoutingApp
 import akka.actor.ActorSystem
-import scala.concurrent.ExecutionContext.Implicits.global
-import spray.http.{MediaTypes, HttpEntity}
+import akka.http.scaladsl.Http
+import akka.stream.ActorMaterializer
 
-object AutowireServer extends autowire.Server[String, upickle.Reader, upickle.Writer]{
-  def read[Result: upickle.Reader](p: String) = upickle.read[Result](p)
-  def write[Result: upickle.Writer](r: Result) = upickle.write(r)
-}
-object Server extends SimpleRoutingApp with EvalImpl {
-  def main(args: Array[String]): Unit = {
-    implicit val system = ActorSystem()
-    startServer("0.0.0.0", port = 8080) {
-      get{
-        pathSingleSlash {
-          complete{
-            HttpEntity(
-              MediaTypes.`text/html`,
-              Template.txt
-            )
-          }
-        } ~
-        getFromResourceDirectory("")
-      } ~
-      post {
-        path("api" / Segments){ s ⇒
-          extract(_.request.entity.asString) { e ⇒
-            complete {
-              AutowireServer.route[Api](Server)(
-                autowire.Core.Request(s, upickle.read[Map[String, String]](e))
-              )
-            }
-          }
-        }
+import com.typesafe.config.{ConfigFactory, Config}
+import scala.concurrent.duration._
+import scala.concurrent.Await
+import java.nio.file.Path
+
+object Server {
+  def start(timeout: FiniteDuration, security: Boolean, artifacts: Seq[Path], 
+            scalacOptions: Seq[String], host: String, port: Int, readyPort: Option[Int], prod: Boolean): Unit = {
+
+    //println((timeout, security, artifacts, scalacOptions, host, port, readyPort, prod))
+
+    val config: Config = ConfigFactory.parseString(s"""
+      akka.http.server {
+        idle-timeout = ${timeout.toSeconds + 5}s
       }
-    }
+    """)
+
+    implicit val system = ActorSystem("scalakata-playground", config)
+    import system.dispatcher
+    implicit val materializer = ActorMaterializer()
+
+    val api = new ApiImpl(artifacts, scalacOptions, security, timeout)
+    val route = (new Route(api, prod)).route
+
+    val setup = 
+      Http().bindAndHandle(route, host, port).map{ _ ⇒
+        // notify sbt plugin to open browser
+        readyPort.map{ p ⇒
+          val ready = new java.net.Socket(host, p)
+          ready.sendUrgentData(0)
+          ready.close()
+        }
+        ()
+      }
+
+    Await.result(setup, 20.seconds)
   }
 }

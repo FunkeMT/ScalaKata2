@@ -49,6 +49,18 @@ object Template {
         link(rel:="stylesheet", href:="/assets/main.css")
       ),
       body(`class` := "cm-s-solarized cm-s-dark")(
+        div(cls := "nav-wrapper")(
+          div(cls := "nav-toggle")(
+            div(cls := "nav-toggle-bar")
+          ),
+          nav(cls := "nav")(
+            ul()(
+              li()(link(href := "#")("Foo")),
+              li()(link(href := "#")("Bar")),
+              li()(link(href := "#")("Baz"))
+            )
+          )
+        ),
         div(`id` := "code", cls := "drawer drawer--right")(
           noscript("No Javscript, No Scala!"),
           div(cls := "play-bar")(
@@ -145,6 +157,24 @@ object Template {
           $(document).on('click', '#close-drawer-btn', function() {
             $('.drawer').drawer('close');
           });
+        """),
+
+        script("""
+          (function() {
+            var hamburger = {
+              navToggle: document.querySelector('.nav-toggle'),
+              nav: document.querySelector('nav'),
+
+              doToggle: function(e) {
+                e.preventDefault();
+                this.navToggle.classList.toggle('expanded');
+                this.nav.classList.toggle('expanded');
+              }
+            };
+
+            hamburger.navToggle.addEventListener('click', function(e) { hamburger.doToggle(e); });
+
+          }());
         """),
 
 

@@ -1,34 +1,27 @@
-# ScalaKata
+![Scalala Logo](/misc/scalala.png)
 
-[![Stories in Ready](https://img.shields.io/waffle/label/MasseGuillaume/ScalaKata2.svg?style=flat-square)](https://waffle.io/MasseGuillaume/ScalaKata2) 
-[![Travis Build Status](https://img.shields.io/travis/MasseGuillaume/ScalaKata2.svg?style=flat-square)](https://travis-ci.org/MasseGuillaume/ScalaKata2) 
-[![Windows Build status](https://img.shields.io/appveyor/ci/MasseGuillaume/ScalaKata2.svg?style=flat-square)](https://ci.appveyor.com/project/MasseGuillaume/scalakata2/branch/master) 
-[![Chat on Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/MasseGuillaume/ScalaKata2) 
+# ScalalaKata
 
-![Demo](/misc/demo.gif)
+[![Gitter](https://badges.gitter.im/ScalalaKata/Lobby.svg)](https://gitter.im/ScalalaKata/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-## Distributions
+[![ScalalaKata](https://i.imgur.com/dr50sGF.png)](https://vimeo.com/282212340 "Scalala Demo - Click to Watch!")
 
-### Sbt Plugin
+### Online Demo
 
-Add the following line to `project/plugins.sbt`
+[http://scalala.syslab.in.htwg-konstanz.de:7331/](http://scalala.syslab.in.htwg-konstanz.de:7331/)
+(_available solely via the HTWG VPN gateway_)
 
-```scala
-addSbtPlugin("com.scalakata" % "sbt-scalakata" % "1.1.5")
-```
+### Bachelor Thesis (LaTeX)
 
-And add the following line to `build.sbt`
+[https://github.com/FunkeMT/bachelor-thesis-scalala](https://github.com/FunkeMT/bachelor-thesis-scalala)
 
-```scala
-enablePlugins(ScalaKataPlugin)
-```
+### Developed Dependencies
 
-To start scalakata:
+- [Scalala](https://github.com/FunkeMT/scalala) [![Build Status](https://travis-ci.org/FunkeMT/scalala.svg?branch=master)](https://travis-ci.org/FunkeMT/scalala)
+- [scala-js-MidiPlayerJS](https://github.com/FunkeMT/scala-js-MidiPlayerJS) [![Build Status](https://travis-ci.org/FunkeMT/scala-js-MidiPlayerJS.svg?branch=master)](https://travis-ci.org/FunkeMT/scala-js-MidiPlayerJS)
+- [scala-js-soundfontPlayer](https://github.com/FunkeMT/scala-js-soundfontPlayer) [![Build Status](https://travis-ci.org/FunkeMT/scala-js-soundfontPlayer.svg?branch=master)](https://travis-ci.org/FunkeMT/scala-js-soundfontPlayer)
 
-`kstart`
+### Based On
 
-### Docker container
-
-`sudo docker run -p 7331:7331 --name scalakata masseguillaume/scalakata:v1.1.5`
-
-open your browser at `http://localhost:7331`
+- [ScalaKata2](https://github.com/MasseGuillaume/ScalaKata2)
+- [scalala](https://github.com/markoboger/scalala)

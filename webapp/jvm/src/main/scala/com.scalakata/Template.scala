@@ -55,8 +55,11 @@ object Template {
           ),
           nav(cls := "nav")(
             ul()(
-              li()(link(href := "#")("Foo")),
-              li()(link(href := "#")("Bar")),
+              li()(a(id := "example_1", cls := "example-btn", href := "#", "data-example-nr".attr := "1")("Example_1")),
+              li()(a(id := "example_2", cls := "example-btn", href := "#", "data-example-nr".attr := "2")("Example_2")),
+              li()(a(id := "example_3", cls := "example-btn", href := "#", "data-example-nr".attr := "3")("Example_3")),
+              hr(),
+              li()(a(id := "example_4", cls := "example-btn", href := "#", "data-example-nr".attr := "4")("Instruments")),
               hr(),
               li()(a(href := "https://github.com/FunkeMT/ScalalaKata", target := "tab")("GitHub"))
             )
@@ -174,7 +177,6 @@ object Template {
             };
 
             hamburger.navToggle.addEventListener('click', function(e) { hamburger.doToggle(e); });
-
           }());
         """),
 

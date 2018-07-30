@@ -59,6 +59,14 @@ object Main {
     val shareButton = dom.document.getElementById("share")
     val stopButton = dom.document.getElementById("stop")
 
+    val example_1_Button = dom.document.getElementById("example_1")
+    val example_2_Button = dom.document.getElementById("example_2")
+    val example_3_Button = dom.document.getElementById("example_3")
+    val example_4_Button = dom.document.getElementById("example_4")
+    val showExample = (editor: Editor, example: String) ⇒ {
+      editor.getDoc().setValue(example)
+    }
+
     CodeMirror.commands.run = Rendering.runDSL _
     //CodeMirror.commands.typeAt = Hint.typeAt _
     CodeMirror.commands.autocomplete = Hint.autocompleteDsl _
@@ -120,6 +128,12 @@ object Main {
         Rendering.resetCursor(doc)
         themeButton.addEventListener("click", (e: dom.Event) ⇒ CodeMirror.commands.solarizedToggle(editor))
         shareButton.addEventListener("click", (e: dom.Event) ⇒ CodeMirror.commands.share(editor))
+
+        example_1_Button.addEventListener("click", (e: dom.Event) ⇒ showExample(editor, ScalalaExamples.getExample(1)))
+        example_2_Button.addEventListener("click", (e: dom.Event) ⇒ showExample(editor, ScalalaExamples.getExample(2)))
+        example_3_Button.addEventListener("click", (e: dom.Event) ⇒ showExample(editor, ScalalaExamples.getExample(3)))
+        example_4_Button.addEventListener("click", (e: dom.Event) ⇒ showExample(editor, ScalalaExamples.getExample(4)))
+
         dom.document.getElementById("help").addEventListener("click", (e: dom.Event) ⇒ CodeMirror.commands.help(editor))
         stateButton.setAttribute("title", s"run ($ctrlS + Enter)")
         stateButton.addEventListener("click", (e: dom.Event) ⇒ {
@@ -162,31 +176,7 @@ object Main {
             Rendering.run(editor)
           }
           else {
-            doc.setValue(
-              """musician piano_1
-                |  instrument Piano
-                |  plays -a,e,d,d/2,c/2,d,d/2,e/2,d/4,c/4,-a/4,-g/4
-                |
-                |musician piano_2
-                |  instrument Piano
-                |  plays chord(--a,--c.sharp,-e)
-                |
-                |musician piano_3
-                |  instrument Piano
-                |  plays --f
-                |
-                |musician piano_4
-                |  instrument Piano
-                |  plays -a,c,+a.dot
-                |
-                |
-                |play with tempo 70
-                |  piano_1 at 1,
-                |  piano_1 at 105,
-                |  piano_2 at 1,
-                |  piano_3 at 105,
-                |  piano_4 at 224
-              """.stripMargin)
+            doc.setValue(ScalalaExamples.getExample(3))
             //CodeMirror.commands.help(editor)
             ()
           }

@@ -67,6 +67,13 @@ object ScalalaExamples {
     | instrument Trumpet
     | plays c,d,e,f,g,a,h
     |
+    |musician drums_example
+    | instrument Drum
+    | plays
+    |   HiHatClosed, HiHatPedal, HiHatOpen,
+    |   TomLowFloor, TomHighFloor, TomLow, TomLowMid, TomHiMid, TomHigh, DrumAcousticBass,
+    |   DrumBass, SnareAcoustic, SnareElectric, SideStick, HandClap
+    |
     |play with tempo 80
     | guitar_example
   """.stripMargin

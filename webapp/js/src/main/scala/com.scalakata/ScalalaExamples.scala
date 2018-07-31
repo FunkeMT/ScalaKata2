@@ -63,8 +63,16 @@ object ScalalaExamples {
     | instrument Guitar
     | plays c,d,e,f,g,a,h
     |
+    |musician xylophone_example
+    | instrument Xylophone
+    | plays c,d,e,f,g,a,h
+    |
     |musician trumpet_example
     | instrument Trumpet
+    | plays c,d,e,f,g,a,h
+    |
+    |musician oboe_example
+    | instrument Oboe
     | plays c,d,e,f,g,a,h
     |
     |musician drums_example

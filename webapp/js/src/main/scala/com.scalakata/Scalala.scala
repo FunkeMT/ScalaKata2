@@ -40,7 +40,7 @@ object Scalala {
   soundfontMap += (25 -> "acoustic_guitar_nylon")
   soundfontMap += (57 -> "trumpet")
   soundfontMap += (115 -> "synth_drum")
-//  soundfontMap += (14 -> "xylophone")
+  soundfontMap += (14 -> "xylophone")
 //  soundfontMap += (20 -> "church_organ")
   soundfontMap += (33 -> "acoustic_bass")
 //  soundfontMap += (41 -> "violin")
@@ -48,7 +48,7 @@ object Scalala {
 //  soundfontMap += (59 -> "tuba")
 //  soundfontMap += (61 -> "french_horn")
 //  soundfontMap += (68 -> "soprano_sax")
-//  soundfontMap += (69 -> "oboe")
+  soundfontMap += (69 -> "oboe")
 //  soundfontMap += (72 -> "clarinet")
 //  soundfontMap += (74 -> "flute")
 

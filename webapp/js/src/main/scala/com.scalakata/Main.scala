@@ -137,17 +137,12 @@ object Main {
         dom.document.getElementById("help").addEventListener("click", (e: dom.Event) ⇒ CodeMirror.commands.help(editor))
         stateButton.setAttribute("title", s"run ($ctrlS + Enter)")
         stateButton.addEventListener("click", (e: dom.Event) ⇒ {
-          if(Rendering.toclear) {
-            Rendering.clear(doc)
-            Rendering.toclear = false
-          } else {
-            // Resume AudioContext
-            // see: https://goo.gl/7K7WLu
-            Scalala.audioContext.resume()
+          // Resume AudioContext
+          // see: https://goo.gl/7K7WLu
+          Scalala.audioContext.resume()
 
-            // Call ScalalaDSL Evaluation
-            Rendering.runDSL(editor)
-          }
+          // Call ScalalaDSL Evaluation
+          Rendering.runDSL(editor)
         })
         stopButton.addEventListener("click", (e: dom.Event) => Scalala.stop())
 
